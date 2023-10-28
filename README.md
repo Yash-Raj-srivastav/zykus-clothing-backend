@@ -29,3 +29,12 @@ sudo apt-get install postgresql-client
 > CREATE USER <YOUR_USERNAME> WITH PASSWORD '<YOUR_PASSWORD>';
 - Create a new DB with name "zykusdb"
 > CREATE DATABASE <YOUR_DATABASE_NAME> OWNER <YOUR_USERNAME>;
+
+
+#### `Note: Before running the project you need to set these environment variables` 
+> PSQL_USERNAME=<YOUR_USERNAME> <br>
+> PSQL_PASSWORD=<YOUR_PASSWORD> <br>
+> PSQL_DBNAME=<YOUR_DATABASE_NAME>
+
+
+ 
