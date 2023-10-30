@@ -36,6 +36,10 @@ public class WebAppUser {
         this.country = country;
     }
 
+    public int getUserId(){
+        return userId;
+    }
+
     public String getUserEmail() {
         return userEmail;
     }

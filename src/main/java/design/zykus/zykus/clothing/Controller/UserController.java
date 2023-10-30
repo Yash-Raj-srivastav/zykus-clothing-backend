@@ -21,5 +21,4 @@ public class UserController {
     public WebAppUser addNewUser(@RequestBody WebAppUser user){
         return this.userService.addNewUser(user);
     }
-
 }
