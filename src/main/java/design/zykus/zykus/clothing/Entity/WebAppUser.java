@@ -1,6 +1,6 @@
 package design.zykus.zykus.clothing.Entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
