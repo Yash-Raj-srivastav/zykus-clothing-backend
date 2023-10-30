@@ -6,34 +6,24 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "webappusers")
 public class WebAppUser {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userId;
-
+    private int userId;
     private String firstName;
-
     private String lastName;
-
     private LocalDate dateOfBirth;
-
     private String userEmail;
-
     private int age;
-
     private String address;
-
     private int pinCode;
-
     private String state;
-
     private String country;
 
     public WebAppUser() {
         // Public no-args constructor is required by JPA
     }
 
-    public WebAppUser(Integer userId, String firstName, String lastName, LocalDate dateOfBirth, String userEmail, int age, String address, int pinCode, String state, String country) {
+    public WebAppUser(int userId, String firstName, String lastName, LocalDate dateOfBirth, String userEmail, int age, String address, int pinCode, String state, String country) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
