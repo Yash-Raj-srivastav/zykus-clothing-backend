@@ -2,7 +2,7 @@ package design.zykus.zykus.clothing.Entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Entity
@@ -160,12 +160,12 @@ public class WebAppUser {
                 '}';
     }
 
-    public void setUserPassword(String userPassword) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.userPassword = passwordEncoder.encode(userPassword);
-    }
-    public boolean isPasswordValid(String inputPassword) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.matches(inputPassword, this.userPassword);
-    }
+//    public void setUserPassword(String userPassword) {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        this.userPassword = passwordEncoder.encode(userPassword);
+//    }
+//    public boolean isPasswordValid(String inputPassword) {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        return passwordEncoder.matches(inputPassword, this.userPassword);
+//    }
 }
