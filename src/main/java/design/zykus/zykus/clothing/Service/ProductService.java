@@ -26,8 +26,8 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public ResponseEntity<Product> updateExistingProduct(Product product, int id){
-        return productRepository.findById(id)
+    public ResponseEntity<Product> updateExistingProduct(Product product, int orderId){
+        return productRepository.findById(orderId)
                 .map(existingProduct -> {
                     // Update only the non-null fields from the updatedUser
                     if (product.getProductType() != null) {

@@ -1,7 +1,9 @@
 package design.zykus.zykus.clothing.DAO;
 
-import design.zykus.zykus.clothing.Entity.Orders;
+import design.zykus.zykus.clothing.Entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface OrdersRepository extends JpaRepository<Orders, Integer> {
+@Repository
+public interface OrdersRepository extends JpaRepository<Order, Integer> {
 }
