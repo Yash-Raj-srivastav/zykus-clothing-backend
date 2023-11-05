@@ -56,6 +56,12 @@ public class UserService {
                     if(user.getCountry() != null){
                         existingUser.setCountry(user.getCountry());
                     }
+                    if(user.getUserName() != null){
+                        existingUser.setUserName(user.getUserName());
+                    }
+                    if(user.getGender() != null){
+                        existingUser.setGender(user.getGender());
+                    }
                     WebAppUser savedUser = userRepository.save(existingUser);
                     return ResponseEntity.ok(savedUser);
                 })
