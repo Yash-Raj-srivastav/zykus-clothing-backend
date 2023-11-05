@@ -15,20 +15,20 @@ public class Orders {
     private LocalDate date_order_placed;
     private String order_details;
 
+    public Orders(int orderId, int userId, String order_status_code, LocalDate date_order_placed, String order_details) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.order_status_code = order_status_code;
+        this.date_order_placed = date_order_placed;
+        this.order_details = order_details;
+    }
+
     public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
     public int getUserId() {
         return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getOrder_status_code() {
@@ -53,5 +53,16 @@ public class Orders {
 
     public void setOrder_details(String order_details) {
         this.order_details = order_details;
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderId=" + orderId +
+                ", userId=" + userId +
+                ", order_status_code='" + order_status_code + '\'' +
+                ", date_order_placed=" + date_order_placed +
+                ", order_details='" + order_details + '\'' +
+                '}';
     }
 }
