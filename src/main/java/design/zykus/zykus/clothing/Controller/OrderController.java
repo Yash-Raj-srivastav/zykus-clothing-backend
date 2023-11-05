@@ -28,6 +28,11 @@ public class OrderController {
         return orderService.addNewOrder(order);
     }
 
+    @PostMapping("/add_multiple")
+    public Iterable<Order> addMultipleNewOrders(@RequestBody Iterable<Order> orders){
+        return this.orderService.addMultipleNewUsers(orders);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Order> updateExistingOrder(@RequestBody Order order, @PathVariable("id") int orderId){
         return orderService.updateExistingOrder(order, orderId);

@@ -5,10 +5,6 @@ import design.zykus.zykus.clothing.Entity.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Service
 public class InvoiceService {
@@ -19,17 +15,21 @@ public class InvoiceService {
         return invoiceRepository.findAll();
     }
 
-    public ResponseEntity<Invoice> getSingleInvoice(@PathVariable("invoiceNumber") Long invoiceNumber){
+    public ResponseEntity<Invoice> getSingleInvoice(Long invoiceNumber){
         return invoiceRepository.findById(invoiceNumber)
                 .map(existingInvoice -> ResponseEntity.ok(existingInvoice))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public Invoice addNewInvoice(@RequestBody Invoice invoice){
+    public Invoice addNewInvoice(Invoice invoice){
         return invoiceRepository.save(invoice);
     }
 
-    public ResponseEntity<Invoice> updateExistingInvoice(@RequestBody Invoice invoice, @PathVariable("invoiceNumber") Long invoiceNumber){
+    public Iterable<Invoice> addMultipleNewInvoices(Iterable<Invoice> invoices){
+        return invoiceRepository.saveAll(invoices);
+    }
+
+    public ResponseEntity<Invoice> updateExistingInvoice(Invoice invoice,Long invoiceNumber){
         return invoiceRepository.findById(invoiceNumber)
                 .map(existingInvoice -> {
                     if(invoice.getInvoiceStatusCode() != null){

@@ -1,7 +1,6 @@
 package design.zykus.zykus.clothing.Service;
 
 import design.zykus.zykus.clothing.DAO.ProductRepository;
-import design.zykus.zykus.clothing.Entity.Invoice;
 import design.zykus.zykus.clothing.Entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +25,10 @@ public class ProductService {
 
     public Product addNewProduct(Product product){
         return productRepository.save(product);
+    }
+
+    public Iterable<Product> addMultipleNewProducts(Iterable<Product> products){
+        return this.productRepository.saveAll(products);
     }
 
     public ResponseEntity<Product> updateExistingProduct(Product product, int orderId){

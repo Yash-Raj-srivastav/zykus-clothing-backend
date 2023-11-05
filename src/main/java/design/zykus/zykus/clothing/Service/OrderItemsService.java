@@ -28,6 +28,10 @@ public class OrderItemsService {
         return orderItemsRepository.save(orderItems);
     }
 
+    public Iterable<OrderItems> addMultipleNewUsers(Iterable<OrderItems> multipleOrderItems){
+        return orderItemsRepository.saveAll(multipleOrderItems);
+    }
+
     public ResponseEntity<OrderItems> updateExistingOrderItems(OrderItems orderItems, int id) {
         return orderItemsRepository.findById(id)
                 .map(existingOrderItems -> {

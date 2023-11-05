@@ -28,6 +28,11 @@ public class ProductController {
         return this.productService.addNewProduct(product);
     }
 
+    @PostMapping("/add_multiple")
+    public Iterable<Product> addMultipleNewUsers(@RequestBody Iterable<Product> products){
+        return this.productService.addMultipleNewProducts(products);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateExistingProduct(@RequestBody Product product, @PathVariable("id") int id){
         return this.productService.updateExistingProduct(product, id);

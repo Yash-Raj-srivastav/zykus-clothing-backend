@@ -26,7 +26,9 @@ public class ShipmentService {
         return shipmentRepository.save(shipment);
     }
 
-
+    public Iterable<Shipment> addMultipleNewShipments(Iterable<Shipment> shipments){
+        return shipmentRepository.saveAll(shipments);
+    }
 
     public ResponseEntity<Shipment> updateExistingShipment(Shipment shipment, int id) {
         return shipmentRepository.findById(id)

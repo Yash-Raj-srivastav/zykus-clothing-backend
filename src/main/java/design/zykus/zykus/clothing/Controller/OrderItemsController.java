@@ -28,6 +28,11 @@ public class OrderItemsController {
         return this.orderItemsService.addNewOrderItems(orderItems);
     }
 
+    @PostMapping("/add_multiple")
+    public Iterable<OrderItems> addMultipleNewOrderItems(@RequestBody Iterable<OrderItems> multipleOrderItems){
+        return this.orderItemsService.addMultipleNewUsers(multipleOrderItems);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<OrderItems> updateExistingOrderItems(@RequestBody OrderItems orderItems, @PathVariable("id") int id){
         return this.orderItemsService.updateExistingOrderItems(orderItems, id);

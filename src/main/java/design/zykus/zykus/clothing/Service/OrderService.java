@@ -24,9 +24,13 @@ public class OrderService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Post Request for adding order
+    // Post Request for adding an order
     public Order addNewOrder(Order order){
         return ordersRepository.save(order);
+    }
+
+    public Iterable<Order> addMultipleNewUsers(Iterable<Order> orders){
+        return ordersRepository.saveAll(orders);
     }
 
     // Put Request for modifying an existing order

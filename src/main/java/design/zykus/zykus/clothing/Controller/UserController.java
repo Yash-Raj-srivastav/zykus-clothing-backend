@@ -30,6 +30,11 @@ public class UserController {
         return this.userService.addNewUser(user);
     }
 
+    @PostMapping("/add_multiple")
+    public Iterable<WebAppUser> addMultipleNewUsers(@RequestBody Iterable<WebAppUser> users){
+        return userService.addMultipleNewInvoices(users);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<WebAppUser> updateUserDetails(@RequestBody WebAppUser user, @PathVariable("id") int id){
         return this.userService.updateUserDetails(user, id);

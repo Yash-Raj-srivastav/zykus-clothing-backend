@@ -26,6 +26,10 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
+    public Iterable<WebAppUser> addMultipleNewInvoices(Iterable<WebAppUser> users){
+        return userRepository.saveAll(users);
+    }
+
     public ResponseEntity<WebAppUser> updateUserDetails(WebAppUser user, int userId){
         return userRepository.findById(userId).
                 map(existingUser -> {
