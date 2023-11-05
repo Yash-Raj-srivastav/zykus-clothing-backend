@@ -30,6 +30,11 @@ public class ShipmentController {
         return this.shipmentService.addNewShipment(shipment);
     }
 
+    @PostMapping("/add_multiple")
+    public Iterable<Shipment> addMultipleNewShipments(@RequestBody Iterable<Shipment> shipments){
+        return this.shipmentService.addMultipleNewShipments(shipments);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Shipment> updateExistingProduct(@RequestBody Shipment shipment, @PathVariable("id") int id){
         return this.shipmentService.updateExistingShipment(shipment, id);

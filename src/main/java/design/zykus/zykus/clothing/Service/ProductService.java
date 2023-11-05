@@ -5,6 +5,7 @@ import design.zykus.zykus.clothing.Entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class ProductService {
@@ -26,8 +27,12 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public ResponseEntity<Product> updateExistingProduct(Product product, int id){
-        return productRepository.findById(id)
+    public Iterable<Product> addMultipleNewProducts(Iterable<Product> products){
+        return this.productRepository.saveAll(products);
+    }
+
+    public ResponseEntity<Product> updateExistingProduct(Product product, int orderId){
+        return productRepository.findById(orderId)
                 .map(existingProduct -> {
                     // Update only the non-null fields from the updatedUser
                     if (product.getProductType() != null) {
@@ -50,6 +55,19 @@ public class ProductService {
                     }
                     Product savedProduct = productRepository.save(existingProduct);
                     return ResponseEntity.ok(savedProduct);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    public ResponseEntity<Product> deleteExistingProduct(@PathVariable("invoiceNumber") int productId){
+        return productRepository.findById(productId)
+                .map(existingProduct -> {
+                    Product deletedProduct = null;
+                    if(existingProduct.getProductId() == productId){
+                        deletedProduct = existingProduct;
+                        productRepository.deleteById(productId);
+                    }
+                    return ResponseEntity.ok(deletedProduct);
                 })
                 .orElse(ResponseEntity.notFound().build());
     }

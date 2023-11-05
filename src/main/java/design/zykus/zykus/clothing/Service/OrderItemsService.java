@@ -2,6 +2,7 @@ package design.zykus.zykus.clothing.Service;
 
 import design.zykus.zykus.clothing.DAO.OrderItemsRepository;
 
+import design.zykus.zykus.clothing.Entity.Invoice;
 import design.zykus.zykus.clothing.Entity.OrderItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,10 @@ public class OrderItemsService {
         return orderItemsRepository.save(orderItems);
     }
 
+    public Iterable<OrderItems> addMultipleNewUsers(Iterable<OrderItems> multipleOrderItems){
+        return orderItemsRepository.saveAll(multipleOrderItems);
+    }
+
     public ResponseEntity<OrderItems> updateExistingOrderItems(OrderItems orderItems, int id) {
         return orderItemsRepository.findById(id)
                 .map(existingOrderItems -> {
@@ -38,4 +43,16 @@ public class OrderItemsService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    public ResponseEntity<OrderItems> deleteExistingOrderItem(int orderItemId){
+        return orderItemsRepository.findById(orderItemId)
+                .map(existingOrderItem -> {
+                    OrderItems deletedOrderItem = null;
+                    if(existingOrderItem.getOrderItemId() == orderItemId){
+                        deletedOrderItem = existingOrderItem;
+                        orderItemsRepository.deleteById(orderItemId);
+                    }
+                    return ResponseEntity.ok(deletedOrderItem);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

@@ -5,6 +5,7 @@ import design.zykus.zykus.clothing.Entity.WebAppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class UserService {
@@ -15,8 +16,8 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
-    public ResponseEntity<WebAppUser> getSingleUser(int id){
-        return this.userRepository.findById(id).
+    public ResponseEntity<WebAppUser> getSingleUser(int userId){
+        return this.userRepository.findById(userId).
                 map(existingUser -> ResponseEntity.ok(existingUser))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -25,8 +26,12 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public ResponseEntity<WebAppUser> updateUserDetails(WebAppUser user, int id){
-        return userRepository.findById(id).
+    public Iterable<WebAppUser> addMultipleNewInvoices(Iterable<WebAppUser> users){
+        return userRepository.saveAll(users);
+    }
+
+    public ResponseEntity<WebAppUser> updateUserDetails(WebAppUser user, int userId){
+        return userRepository.findById(userId).
                 map(existingUser -> {
                     // Update only the non-null fields from the updatedUser
                     if (user.getFirstName() != null) {
@@ -64,6 +69,19 @@ public class UserService {
                     }
                     WebAppUser savedUser = userRepository.save(existingUser);
                     return ResponseEntity.ok(savedUser);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    public ResponseEntity<WebAppUser> deleteExistingUser(@PathVariable("userId") Integer userId){
+        return userRepository.findById(userId)
+                .map(existingUser -> {
+                    WebAppUser deletedUser = null;
+                    if(existingUser.getUserId() == userId){
+                        deletedUser = existingUser;
+                        userRepository.deleteById(userId);
+                    }
+                    return ResponseEntity.ok(deletedUser);
                 })
                 .orElse(ResponseEntity.notFound().build());
     }

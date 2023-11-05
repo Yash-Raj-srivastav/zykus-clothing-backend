@@ -5,6 +5,7 @@ import design.zykus.zykus.clothing.Entity.Shipment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class ShipmentService {
@@ -25,7 +26,9 @@ public class ShipmentService {
         return shipmentRepository.save(shipment);
     }
 
-
+    public Iterable<Shipment> addMultipleNewShipments(Iterable<Shipment> shipments){
+        return shipmentRepository.saveAll(shipments);
+    }
 
     public ResponseEntity<Shipment> updateExistingShipment(Shipment shipment, int id) {
         return shipmentRepository.findById(id)
@@ -37,6 +40,17 @@ public class ShipmentService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-
+    public ResponseEntity<Shipment> deleteExistingShipment(@PathVariable("shipmentId") int shipmentId){
+        return shipmentRepository.findById(shipmentId)
+                .map(existingProduct -> {
+                    Shipment deletedProduct = null;
+                    if(existingProduct.getShipment_id() == shipmentId){
+                        deletedProduct = existingProduct;
+                        shipmentRepository.deleteById(shipmentId);
+                    }
+                    return ResponseEntity.ok(deletedProduct);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 }
