@@ -1,6 +1,6 @@
 package design.zykus.zykus.clothing.Service;
 
-import design.zykus.zykus.clothing.DAO.OrdersRepository;
+import design.zykus.zykus.clothing.Model.OrdersRepository;
 import design.zykus.zykus.clothing.Entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,13 +40,9 @@ public class OrderService {
                     if(order.getOrderDetails() != null) {
                         existingOrder.setOrderDetails(order.getOrderDetails());
                     }
-                    if(order.getDateOrderPlaced() != null){
-                        existingOrder.setDateOrderPlaced(order.getDateOrderPlaced());
-                    }
                     if(order.getOrderStatusCode() != null){
                         existingOrder.setOrderStatusCode(order.getOrderStatusCode());
                     }
-
                     Order savedOrderDetails = ordersRepository.save(existingOrder);
                     return ResponseEntity.ok(savedOrderDetails);
                 })

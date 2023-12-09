@@ -1,8 +1,7 @@
 package design.zykus.zykus.clothing.Service;
 
-import design.zykus.zykus.clothing.DAO.OrderItemsRepository;
+import design.zykus.zykus.clothing.Model.OrderItemsRepository;
 
-import design.zykus.zykus.clothing.Entity.Invoice;
 import design.zykus.zykus.clothing.Entity.OrderItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

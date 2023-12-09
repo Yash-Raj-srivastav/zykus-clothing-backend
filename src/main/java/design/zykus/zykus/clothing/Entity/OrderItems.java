@@ -1,5 +1,6 @@
 package design.zykus.zykus.clothing.Entity;
 
+import design.zykus.zykus.clothing.Utils.OrderStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public class OrderItems {
     private int orderItemId;
     private int productId;
     private int orderId;
-    private String orderItemStatusCode;
+    private OrderStatus orderItemStatusCode;
     private int orderItemQuantity;
     private int orderItemPrice;
     private int rmaNumber;
@@ -23,7 +24,7 @@ public class OrderItems {
 
     public OrderItems(){};
 
-    public OrderItems(int orderItemId, int productId, int orderId, String orderItemStatusCode, int orderItemQuantity, int orderItemPrice, int rmaNumber, String rmaIssuedBy, LocalDate rmaIssuedDate, String otherOrderItemDetail) {
+    public OrderItems(int orderItemId, int productId, int orderId, OrderStatus orderItemStatusCode, int orderItemQuantity, int orderItemPrice, int rmaNumber, String rmaIssuedBy, LocalDate rmaIssuedDate, String otherOrderItemDetail) {
         this.orderItemId = orderItemId;
         this.productId = productId;
         this.orderId = orderId;
@@ -56,11 +57,11 @@ public class OrderItems {
         this.orderId = orderId;
     }
 
-    public String getOrderItemStatusCode() {
+    public OrderStatus getOrderItemStatusCode() {
         return orderItemStatusCode;
     }
 
-    public void setOrderItemStatusCode(String orderItemStatusCode) {
+    public void setOrderItemStatusCode(OrderStatus orderItemStatusCode) {
         this.orderItemStatusCode = orderItemStatusCode;
     }
 

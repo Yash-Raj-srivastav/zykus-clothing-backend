@@ -1,6 +1,6 @@
 package design.zykus.zykus.clothing.Service;
 
-import design.zykus.zykus.clothing.DAO.UserRepository;
+import design.zykus.zykus.clothing.Model.UserRepository;
 import design.zykus.zykus.clothing.Entity.WebAppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

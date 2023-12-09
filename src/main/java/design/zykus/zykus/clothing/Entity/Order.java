@@ -1,5 +1,6 @@
 package design.zykus.zykus.clothing.Entity;
 
+import design.zykus.zykus.clothing.Utils.OrderStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,15 +11,23 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderId;
+    @JoinTable(
+            name = "orders",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "userId"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "order_id", referencedColumnName = "orderId"
+            )
+    )
     private int userId;
-    private String orderStatusCode;
+    private OrderStatus orderStatusCode;
     private LocalDate dateOrderPlaced;
     private String orderDetails;
 
     public Order(){
 
     }
-    public Order(int orderId, int userId, String orderStatusCode, LocalDate dateOrderPlaced, String orderDetails) {
+    public Order(int orderId, int userId, OrderStatus orderStatusCode, LocalDate dateOrderPlaced, String orderDetails) {
         this.orderId = orderId;
         this.userId = userId;
         this.orderStatusCode = orderStatusCode;
@@ -38,11 +47,11 @@ public class Order {
         this.userId = userId;
     }
 
-    public String getOrderStatusCode() {
+    public OrderStatus getOrderStatusCode() {
         return orderStatusCode;
     }
 
-    public void setOrderStatusCode(String orderStatusCode) {
+    public void setOrderStatusCode(OrderStatus orderStatusCode) {
         this.orderStatusCode = orderStatusCode;
     }
 

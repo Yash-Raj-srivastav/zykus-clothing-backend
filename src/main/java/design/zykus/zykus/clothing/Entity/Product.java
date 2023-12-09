@@ -1,5 +1,6 @@
 package design.zykus.zykus.clothing.Entity;
 
+import design.zykus.zykus.clothing.Utils.ProductType;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,7 +9,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int productId;
-    private String productType;
+    private ProductType productType;
     private String color;
     private String name;
     private String size;
@@ -16,7 +17,7 @@ public class Product {
     private String productDescription;
     public Product(){}
 
-    public Product(int productId, String productType, String color, String name, String size, float price, String productDescription) {
+    public Product(int productId, ProductType productType, String color, String name, String size, float price, String productDescription) {
         this.productId = productId;
         this.productType = productType;
         this.color = color;
@@ -30,11 +31,11 @@ public class Product {
         return productId;
     }
 
-    public String getProductType() {
+    public ProductType getProductType() {
         return productType;
     }
 
-    public void setProductType(String productType) {
+    public void setProductType(ProductType productType) {
         this.productType = productType;
     }
 

@@ -1,4 +1,4 @@
-package design.zykus.zykus.clothing.DAO;
+package design.zykus.zykus.clothing.Model;
 
 import design.zykus.zykus.clothing.Entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
