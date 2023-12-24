@@ -31,7 +31,7 @@ sudo apt-get install postgresql-client
 > CREATE DATABASE <YOUR_DATABASE_NAME> OWNER <YOUR_USERNAME>;
 
 
-#### `Note: Before running the project you need to set these environment variables` 
+#### `Note: Before running the project you need to set these environment variables in application.properties file` 
 > PSQL_USERNAME=<YOUR_USERNAME> <br>
 > PSQL_PASSWORD=<YOUR_PASSWORD> <br>
 > PSQL_DBNAME=<YOUR_DATABASE_NAME>
