@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     public ResponseEntity<WebAppUser> getSingleUser(int userId){
         return this.userRepository.findById(userId).
-                map(existingUser -> ResponseEntity.ok(existingUser))
+                map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 

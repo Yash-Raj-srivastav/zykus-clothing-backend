@@ -2,16 +2,22 @@ package design.zykus.zykus.clothing.services.impl;
 
 import design.zykus.zykus.clothing.repository.ProductRepository;
 import design.zykus.zykus.clothing.entities.Product;
+import design.zykus.zykus.clothing.services.ProductService;
+import design.zykus.zykus.clothing.utils.ProductSize;
+import design.zykus.zykus.clothing.utils.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 @Service
-public class ProductServiceImpl {
-
+public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
+    HashMap<Integer, ProductType> productTypeMap = new HashMap<>();
 
     public Iterable<Product> getAllProducts(){
         return this.productRepository.findAll();
@@ -19,7 +25,7 @@ public class ProductServiceImpl {
 
     public ResponseEntity<Product> getSingleProduct(int id){
         return this.productRepository.findById(id).
-                map(existingProduct -> ResponseEntity.ok(existingProduct))
+                map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -44,7 +50,7 @@ public class ProductServiceImpl {
                     if(product.getColor() != null){
                         existingProduct.setColor(product.getColor());
                     }
-                    if(product.getSize() == "S" || product.getSize() == "M" || product.getSize() == "L" || product.getSize() == "XL"){
+                    if(Objects.equals(product.getSize(), "S") || Objects.equals(product.getSize(), "M") || Objects.equals(product.getSize(), "L") || Objects.equals(product.getSize(), "XL")){
                         existingProduct.setSize(product.getSize());
                     }
                     if(product.getPrice() >= 1000){
@@ -53,13 +59,17 @@ public class ProductServiceImpl {
                     if(product.getProductDescription() != null){
                         existingProduct.setProductDescription(product.getProductDescription());
                     }
+                    if(product.getRating() > 0 && product.getRating() <= 5){
+                        int calcRating = (existingProduct.getRating() + product.getRating()) / 5;
+                        existingProduct.setRating(calcRating);
+                    }
                     Product savedProduct = productRepository.save(existingProduct);
                     return ResponseEntity.ok(savedProduct);
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<Product> deleteExistingProduct(@PathVariable("invoiceNumber") int productId){
+    public ResponseEntity<Product> deleteExistingProduct(int productId){
         return productRepository.findById(productId)
                 .map(existingProduct -> {
                     Product deletedProduct = null;
@@ -70,5 +80,21 @@ public class ProductServiceImpl {
                     return ResponseEntity.ok(deletedProduct);
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public ResponseEntity<List<Product>> filter(String type, String size, Float minPrice, Float maxPrice) {
+        List<Product> list = productRepository.filter(type, size, minPrice, maxPrice);
+        return ResponseEntity.ok(list);
+    }
+
+    @Override
+    public List<Product> sortByPrice() {
+        return productRepository.sortByPrice();
+    }
+
+    @Override
+    public List<Product> sortByRating() {
+        return productRepository.sortByRating();
     }
 }

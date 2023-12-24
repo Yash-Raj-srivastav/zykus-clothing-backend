@@ -5,6 +5,7 @@ import design.zykus.zykus.clothing.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -33,7 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request.requestMatchers("/api/v2/auth/**")
                         .permitAll()
                         .requestMatchers("/api/v2/users/**", "/api/v2/orders/**", "/api/v2/invoices/**", "/api/v2/order_items/**", "/api/v2/products/**", "/api/v2/products/**", "/api/v2/shipments/**").hasAnyAuthority(Role.ADMIN.name())
-                        .requestMatchers("/api/v2/products").hasAnyAuthority(Role.USER.name())
+                        .requestMatchers(HttpMethod.GET,"/api/v2/products").hasAnyAuthority(Role.USER.name())
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
