@@ -19,11 +19,11 @@ Welcome to the Clothing Store Website project! This open-source project aims to 
 
 ## Tech Stack:
 
-**Frontend**: HTML, CSS, JavaScript (React, Angular, or Vue)
+**Frontend**: HTML, CSS, JavaScript (Nextjs)
 
-**Backend**: Node.js, Spring Boot, Django, or your preferred backend framework
+**Backend**: Spring Boot
 
-**Database**: MongoDB, MySQL, PostgreSQL, or your preferred database
+**Database**: PostgreSQL
 
 ## Steps for getting started
 - Check if psql is installed:
