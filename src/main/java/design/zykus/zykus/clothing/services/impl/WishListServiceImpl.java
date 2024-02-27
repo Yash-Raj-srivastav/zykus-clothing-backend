@@ -49,10 +49,6 @@ public class WishListServiceImpl implements WishListService {
             logger.info("Product found: " + optionalProduct.get());
 
             WebAppUser user = optionalUser.get();
-            userRepository.save(user);
-
-            Product product = optionalProduct.get();
-            productRepository.save(product);
 
             Set<ProductInWishList> productInWishLists = user.getProductInWishList();
             productInWishLists.add(productInWishList);
