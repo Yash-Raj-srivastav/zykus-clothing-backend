@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "SELECT * FROM products WHERE (:type is null or product_type = :type) and (:size is null or size = :size) and (:minPrice is null or price >= :minPrice) and (:maxPrice is null or price <= :maxPrice)", nativeQuery = true)
     List<Product> filter(

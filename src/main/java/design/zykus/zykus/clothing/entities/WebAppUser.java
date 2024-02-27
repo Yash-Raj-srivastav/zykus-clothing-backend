@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -17,7 +18,7 @@ import java.util.List;
 public class WebAppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private Long userId;
 
     private String userName;
     private String userPassword;
@@ -33,6 +34,10 @@ public class WebAppUser implements UserDetails {
     private String state;
     private String country;
     private Role role;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<ProductInWishList> productInWishList;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Order> order;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -25,7 +25,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") int id){
+    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") Long id){
         return this.productService.getSingleProduct(id);
     }
 
@@ -60,7 +60,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateExistingProduct(@RequestBody Product product, @PathVariable("id") int id){
+    public ResponseEntity<Product> updateExistingProduct(@RequestBody Product product, @PathVariable("id") Long id){
         return this.productService.updateExistingProduct(product, id);
     }
 }

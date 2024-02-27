@@ -1,6 +1,7 @@
 package design.zykus.zykus.clothing.entities;
 
 import design.zykus.zykus.clothing.utils.ProductSize;
+import design.zykus.zykus.clothing.utils.ProductStatus;
 import design.zykus.zykus.clothing.utils.ProductType;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.Data;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int productId;
+    private Long productId;
     @Enumerated(EnumType.STRING)
     private ProductType productType;
     private String color;
@@ -21,4 +22,6 @@ public class Product {
     private float price;
     private String productDescription;
     private int rating;
+    @Enumerated(EnumType.STRING)
+    private ProductStatus productStatus;
 }
