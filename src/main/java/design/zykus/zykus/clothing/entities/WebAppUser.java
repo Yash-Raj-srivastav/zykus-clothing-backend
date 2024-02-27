@@ -1,5 +1,6 @@
 package design.zykus.zykus.clothing.entities;
 
+import design.zykus.zykus.clothing.dto.ProductInWishListRequest;
 import design.zykus.zykus.clothing.utils.Role;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -35,7 +36,7 @@ public class WebAppUser implements UserDetails {
     private String country;
     private Role role;
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<ProductInWishList> productInWishList;
+    private Set<ProductInWishListRequest> productInWishList;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Order> order;
 

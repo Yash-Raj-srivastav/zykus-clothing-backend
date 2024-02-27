@@ -1,6 +1,6 @@
-package design.zykus.zykus.clothing.entities;
+package design.zykus.zykus.clothing.dto;
 
-import design.zykus.zykus.clothing.utils.ProductStatus;
+import design.zykus.zykus.clothing.entities.BaseModel;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 @Table(name = "wishlist_product")
-public class ProductInWishList extends BaseModel{
+public class ProductInWishListRequest extends BaseModel {
     @Column(name = "product_id")
     private Long productId;
     @Column(name = "user_id")

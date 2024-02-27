@@ -1,10 +1,10 @@
 package design.zykus.zykus.clothing.services;
 
-import design.zykus.zykus.clothing.entities.ProductInWishList;
-
-import java.util.Set;
+import design.zykus.zykus.clothing.dto.ProductInWishListResponse;
+import design.zykus.zykus.clothing.dto.ProductInWishListRequest;
 
 public interface WishListService {
-    public Set<ProductInWishList> getWishListOfUser(Long userId);
-    public void addProductToWishList(ProductInWishList productInWishList);
+    public ProductInWishListResponse getWishListOfUser(Long userId);
+    public ProductInWishListRequest addProductToWishList(ProductInWishListRequest productInWishList);
+    public ProductInWishListRequest deleteProductFromWishList(ProductInWishListRequest productInWishList);
 }
