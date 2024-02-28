@@ -41,7 +41,7 @@ public class WebAppUser implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Order> order;
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<ProductInCartRequest> productInCartRequests;
+    private Set<ProductInCartRequest> productInCart;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

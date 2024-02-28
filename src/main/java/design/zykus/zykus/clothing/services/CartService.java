@@ -7,6 +7,6 @@ import design.zykus.zykus.clothing.dto.ProductResponse;
 
 public interface CartService {
     public ProductInCartResponse getCartOfUser(Long userId);
-    public ProductInCartResponse addProductToCart(ProductInCartRequest productInCartRequest);
+    public ProductResponse addProductToCart(ProductInCartRequest productInCartRequest);
     public ProductResponse deleteProductFromCart(ProductInCartRequest productInCartRequest);
 }

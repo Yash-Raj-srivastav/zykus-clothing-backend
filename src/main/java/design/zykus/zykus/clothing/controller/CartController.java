@@ -20,8 +20,8 @@ public class CartController {
     }
 
     @PostMapping("/add-to-cart")
-    public ResponseEntity<ProductInCartResponse> addProductToCart(@RequestBody ProductInCartRequest productInCartRequest){
-        ProductInCartResponse addProductInCartResponse = cartService.addProductToCart(productInCartRequest);
+    public ResponseEntity<ProductResponse> addProductToCart(@RequestBody ProductInCartRequest productInCartRequest){
+        ProductResponse addProductInCartResponse = cartService.addProductToCart(productInCartRequest);
         return ResponseEntity.ok(addProductInCartResponse);
     }
 
