@@ -1,5 +1,6 @@
 package design.zykus.zykus.clothing.entities;
 
+import design.zykus.zykus.clothing.dto.ProductInCartRequest;
 import design.zykus.zykus.clothing.dto.ProductInWishListRequest;
 import design.zykus.zykus.clothing.utils.Role;
 import jakarta.persistence.*;
@@ -39,6 +40,8 @@ public class WebAppUser implements UserDetails {
     private Set<ProductInWishListRequest> productInWishList;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Order> order;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<ProductInCartRequest> productInCartRequests;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

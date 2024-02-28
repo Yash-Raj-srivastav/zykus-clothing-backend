@@ -2,6 +2,7 @@ package design.zykus.zykus.clothing.controller;
 
 import design.zykus.zykus.clothing.dto.ProductInWishListResponse;
 import design.zykus.zykus.clothing.dto.ProductInWishListRequest;
+import design.zykus.zykus.clothing.dto.ProductResponse;
 import design.zykus.zykus.clothing.services.WishListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,14 @@ public class WishListController {
     }
 
     @PostMapping("/add-to-wishlist")
-    public ResponseEntity<ProductInWishListRequest> addProductToWishList(@RequestBody ProductInWishListRequest productInWishList){
-        ProductInWishListRequest addedProductToWishList = wishListService.addProductToWishList(productInWishList);
+    public ResponseEntity<ProductResponse> addProductToWishList(@RequestBody ProductInWishListRequest productInWishList){
+        ProductResponse addedProductToWishList = wishListService.addProductToWishList(productInWishList);
         return ResponseEntity.ok(addedProductToWishList);
     }
 
     @DeleteMapping("/remove-from-wishlist")
-    public ResponseEntity<ProductInWishListRequest> deleteProductFromWishList(@RequestBody ProductInWishListRequest productInWishList){
-        ProductInWishListRequest deletedProductFromWishList = wishListService.deleteProductFromWishList(productInWishList);
+    public ResponseEntity<ProductResponse> deleteProductFromWishList(@RequestBody ProductInWishListRequest productInWishList){
+        ProductResponse deletedProductFromWishList = wishListService.deleteProductFromWishList(productInWishList);
         return ResponseEntity.ok(deletedProductFromWishList);
     }
 }

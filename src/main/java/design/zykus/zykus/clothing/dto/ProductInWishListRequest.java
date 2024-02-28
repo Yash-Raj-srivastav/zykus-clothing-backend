@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Data
 @RequiredArgsConstructor
-@Table(name = "wishlist_product")
-public class ProductInWishListRequest extends BaseModel {
-    @Column(name = "product_id")
+public class ProductInWishListRequest extends BaseModel{
     private Long productId;
-    @Column(name = "user_id")
     private Long userId;
 }
