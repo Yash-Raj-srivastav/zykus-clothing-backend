@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findAll();
     }
 
-    public ResponseEntity<WebAppUser> getSingleUser(int userId){
+    public ResponseEntity<WebAppUser> getSingleUser(Long userId){
         return this.userRepository.findById(userId).
                 map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.saveAll(users);
     }
 
-    public ResponseEntity<WebAppUser> updateUserDetails(WebAppUser user, int userId){
+    public ResponseEntity<WebAppUser> updateUserDetails(WebAppUser user, Long userId){
         return userRepository.findById(userId).
                 map(existingUser -> {
                     // Update only the non-null fields from the updatedUser
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<WebAppUser> deleteExistingUser(@PathVariable("userId") Integer userId){
+    public ResponseEntity<WebAppUser> deleteExistingUser(@PathVariable("userId") Long userId){
         return userRepository.findById(userId)
                 .map(existingUser -> {
                     WebAppUser deletedUser = null;

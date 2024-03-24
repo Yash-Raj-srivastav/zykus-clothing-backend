@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -23,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
         return this.productRepository.findAll();
     }
 
-    public ResponseEntity<Product> getSingleProduct(int id){
+    public ResponseEntity<Product> getSingleProduct(Long id){
         return this.productRepository.findById(id).
                 map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -37,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
         return this.productRepository.saveAll(products);
     }
 
-    public ResponseEntity<Product> updateExistingProduct(Product product, int orderId){
+    public ResponseEntity<Product> updateExistingProduct(Product product, Long orderId){
         return productRepository.findById(orderId)
                 .map(existingProduct -> {
                     // Update only the non-null fields from the updatedUser
@@ -50,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
                     if(product.getColor() != null){
                         existingProduct.setColor(product.getColor());
                     }
-                    if(Objects.equals(product.getSize(), "S") || Objects.equals(product.getSize(), "M") || Objects.equals(product.getSize(), "L") || Objects.equals(product.getSize(), "XL")){
+                    if(product.getSize() == ProductSize.SMALL || product.getSize() == ProductSize.MEDIUM || product.getSize() == ProductSize.LARGE || product.getSize() == ProductSize.EXTRA_LARGE){
                         existingProduct.setSize(product.getSize());
                     }
                     if(product.getPrice() >= 1000){
@@ -69,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<Product> deleteExistingProduct(int productId){
+    public ResponseEntity<Product> deleteExistingProduct(Long productId){
         return productRepository.findById(productId)
                 .map(existingProduct -> {
                     Product deletedProduct = null;

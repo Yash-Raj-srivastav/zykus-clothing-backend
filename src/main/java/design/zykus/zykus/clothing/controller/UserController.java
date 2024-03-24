@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WebAppUser> getSingleUser(@PathVariable("id") int id){
+    public ResponseEntity<WebAppUser> getSingleUser(@PathVariable("id") Long id){
         return this.userService.getSingleUser(id);
     }
 
@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<WebAppUser> updateUserDetails(@RequestBody WebAppUser user, @PathVariable("id") int id){
+    public ResponseEntity<WebAppUser> updateUserDetails(@RequestBody WebAppUser user, @PathVariable("id") Long id){
         return this.userService.updateUserDetails(user, id);
     }
 }
