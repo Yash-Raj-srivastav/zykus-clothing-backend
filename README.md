@@ -19,7 +19,7 @@ Welcome to the Clothing Store Website project! This open-source project aims to 
 
 ## Tech Stack:
 
-**Frontend**: HTML, CSS, JavaScript (Nextjs)
+**Frontend**: Nextjs, TailWind CSS
 
 **Backend**: Spring Boot
 
